@@ -17,6 +17,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.lab13.Classes.GetClientsList;
 import com.example.lab13.Classes.MetalModels.GetMetalStructures;
 import com.example.lab13.Classes.MetalModels.Metal;
+import com.example.lab13.Classes.SupplierModel.GetSupplier;
+import com.example.lab13.Classes.SupplierModel.Supplier;
 import com.example.lab13.Classes.User;
 import com.example.lab13.Classes.WarehouseModel.GetWarehouseList;
 import com.example.lab13.Classes.WarehouseModel.Warehouse;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private static List<User> Users = GetClientsList.GetUsers();
     private static List<Metal> MetalStructures = GetMetalStructures.GetStuctures();
     private static List<Warehouse> WarehouseStocks = GetWarehouseList.GetWarehouseStocks();
+    private static List<Supplier> Suppliers = GetSupplier.GetSuppliers();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,12 @@ public class MainActivity extends AppCompatActivity {
             cv.put(DBHelper.WAREHOUSES_STOCKS_UPDATE_DATE, wh.UpdateDate);
             db.insert(DBHelper.TABLE_WAREHOUSES_STOCKS, null, cv);
             cv.clear();
+        }
+
+        for(Supplier sup : Suppliers) {
+            cv.put(DBHelper.SUPPLIERS_ID, sup.SupplierId);
+            cv.put(DBHelper.SUPPLIERS_NAME, sup.SupplierName);
+            db.insert(DBHelper.TABLE_SUPPLIERS, null, cv);
         }
     }
 }

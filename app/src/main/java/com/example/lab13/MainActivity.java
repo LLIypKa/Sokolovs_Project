@@ -75,11 +75,17 @@ public class MainActivity extends AppCompatActivity {
 
         while(metalCursor.move(1)) {
             Log.d("mLog", "Structure");
+
             int nameIndex = metalCursor.getColumnIndex(DBHelper.METAL_STRUCTURES_NAME);
             int colorIndex = metalCursor.getColumnIndex(DBHelper.METAL_STRUCTURES_COLOR);
+
             String name = metalCursor.getString(nameIndex);
             String color = metalCursor.getString(colorIndex);
+
             Log.d("mLog", String.format("name: %s, color: %s", name, color));
         }
+
+        usersCursor.close();
+        metalCursor.close();
     }
 }

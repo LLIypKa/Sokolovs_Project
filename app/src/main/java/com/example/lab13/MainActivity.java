@@ -18,6 +18,8 @@ import com.example.lab13.Classes.GetClientsList;
 import com.example.lab13.Classes.MetalModels.GetMetalStructures;
 import com.example.lab13.Classes.MetalModels.Metal;
 import com.example.lab13.Classes.User;
+import com.example.lab13.Classes.WarehouseModel.GetWarehouseList;
+import com.example.lab13.Classes.WarehouseModel.Warehouse;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     DBHelper helper;
     private static List<User> Users = GetClientsList.GetUsers();
     private static List<Metal> MetalStructures = GetMetalStructures.GetStuctures();
+    private static List<Warehouse> WarehouseStocks = GetWarehouseList.GetWarehouseStocks();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +65,18 @@ public class MainActivity extends AppCompatActivity {
             cv.clear();
         }
 
+        for(Warehouse wh : WarehouseStocks) {
+            cv.put(DBHelper.WAREHOUSES_STOCKS_ID, wh.RecordId);
+            cv.put(DBHelper.WAREHOUSES_STOCKS_METAL_ID, wh.MetalStructureId);
+            cv.put(DBHelper.WAREHOUSES_STOCKS_METAL_COUNT, wh.MetalStructureCount);
+            cv.put(DBHelper.WAREHOUSES_STOCKS_UPDATE_DATE, wh.UpdateDate);
+            db.insert(DBHelper.TABLE_WAREHOUSES_STOCKS, null, cv);
+            cv.clear();
+        }
+
         Cursor usersCursor = db.query(DBHelper.TABLE_CLIENTS, null, null, null, null, null, null);
         Cursor metalCursor = db.query(DBHelper.TABLE_METAL_STRUCTURES, null, null, null, null, null, null);
+        Cursor stocksCursor = db.query(DBHelper.TABLE_WAREHOUSES_STOCKS, null, null, null, null, null, null);
 
         //выводим данные
         while (usersCursor.move(1)) {
@@ -83,6 +96,22 @@ public class MainActivity extends AppCompatActivity {
             String color = metalCursor.getString(colorIndex);
 
             Log.d("mLog", String.format("name: %s, color: %s", name, color));
+        }
+
+        while(stocksCursor.move(1)) {
+            Log.d("mLog", "Warehouse`s stocks record");
+
+            int metalIdIndex = stocksCursor.getColumnIndex(DBHelper.WAREHOUSES_STOCKS_METAL_ID);
+            int metalCountIndex = stocksCursor.getColumnIndex(DBHelper.WAREHOUSES_STOCKS_METAL_COUNT);
+            int updateDateIndex = stocksCursor.getColumnIndex(DBHelper.WAREHOUSES_STOCKS_UPDATE_DATE);
+
+            Integer metalCountValue = stocksCursor.getInt(metalCountIndex);
+            String metalName = MetalStructures.stream()
+                    .filter(x -> x.metalStructureID == stocksCursor.getInt(metalIdIndex))
+                    .findFirst().get().metalStructureName;
+            String updateDateValue = stocksCursor.getString(updateDateIndex);
+
+            Log.d("mLog", String.format("Stcoks record: metal - %s, count - %d, update date - %s", metalName, metalCountValue, updateDateValue));
         }
 
         usersCursor.close();

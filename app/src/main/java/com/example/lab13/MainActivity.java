@@ -54,14 +54,32 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //создаём металлические структуры
+        for(Metal structure : MetalStructures) {
+            cv.put(DBHelper.METAL_STRUCTURES_ID, structure.metalStructureID);
+            cv.put(DBHelper.METAL_STRUCTURES_NAME, structure.metalStructureName);
+            cv.put(DBHelper.METAL_STRUCTURES_COLOR, structure.metalStructureColor);
+            db.insert(DBHelper.TABLE_METAL_STRUCTURES, null, cv);
+            cv.clear();
+        }
 
         Cursor usersCursor = db.query(DBHelper.TABLE_CLIENTS, null, null, null, null, null, null);
+        Cursor metalCursor = db.query(DBHelper.TABLE_METAL_STRUCTURES, null, null, null, null, null, null);
 
+        //выводим данные
         while (usersCursor.move(1)) {
             Log.d("mLog", "User");
             int nameIndex = usersCursor.getColumnIndex(DBHelper.CLIENTS_NAME);
             String name = usersCursor.getString(nameIndex);
             Log.d("mLog", name);
+        }
+
+        while(metalCursor.move(1)) {
+            Log.d("mLog", "Structure");
+            int nameIndex = metalCursor.getColumnIndex(DBHelper.METAL_STRUCTURES_NAME);
+            int colorIndex = metalCursor.getColumnIndex(DBHelper.METAL_STRUCTURES_COLOR);
+            String name = metalCursor.getString(nameIndex);
+            String color = metalCursor.getString(colorIndex);
+            Log.d("mLog", String.format("name: %s, color: %s", name, color));
         }
     }
 }

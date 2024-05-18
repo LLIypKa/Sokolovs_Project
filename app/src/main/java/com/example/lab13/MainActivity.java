@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             cv.clear();
         }
 
-        //создаём метал структуры
+        //создаём металлические структуры
 
         Cursor usersCursor = db.query(DBHelper.TABLE_CLIENTS, null, null, null, null, null, null);
 

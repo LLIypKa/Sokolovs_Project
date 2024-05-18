@@ -73,48 +73,5 @@ public class MainActivity extends AppCompatActivity {
             db.insert(DBHelper.TABLE_WAREHOUSES_STOCKS, null, cv);
             cv.clear();
         }
-
-        Cursor usersCursor = db.query(DBHelper.TABLE_CLIENTS, null, null, null, null, null, null);
-        Cursor metalCursor = db.query(DBHelper.TABLE_METAL_STRUCTURES, null, null, null, null, null, null);
-        Cursor stocksCursor = db.query(DBHelper.TABLE_WAREHOUSES_STOCKS, null, null, null, null, null, null);
-
-        //выводим данные
-        while (usersCursor.move(1)) {
-            Log.d("mLog", "User");
-            int nameIndex = usersCursor.getColumnIndex(DBHelper.CLIENTS_NAME);
-            String name = usersCursor.getString(nameIndex);
-            Log.d("mLog", name);
-        }
-
-        while(metalCursor.move(1)) {
-            Log.d("mLog", "Structure");
-
-            int nameIndex = metalCursor.getColumnIndex(DBHelper.METAL_STRUCTURES_NAME);
-            int colorIndex = metalCursor.getColumnIndex(DBHelper.METAL_STRUCTURES_COLOR);
-
-            String name = metalCursor.getString(nameIndex);
-            String color = metalCursor.getString(colorIndex);
-
-            Log.d("mLog", String.format("name: %s, color: %s", name, color));
-        }
-
-        while(stocksCursor.move(1)) {
-            Log.d("mLog", "Warehouse`s stocks record");
-
-            int metalIdIndex = stocksCursor.getColumnIndex(DBHelper.WAREHOUSES_STOCKS_METAL_ID);
-            int metalCountIndex = stocksCursor.getColumnIndex(DBHelper.WAREHOUSES_STOCKS_METAL_COUNT);
-            int updateDateIndex = stocksCursor.getColumnIndex(DBHelper.WAREHOUSES_STOCKS_UPDATE_DATE);
-
-            Integer metalCountValue = stocksCursor.getInt(metalCountIndex);
-            String metalName = MetalStructures.stream()
-                    .filter(x -> x.metalStructureID == stocksCursor.getInt(metalIdIndex))
-                    .findFirst().get().metalStructureName;
-            String updateDateValue = stocksCursor.getString(updateDateIndex);
-
-            Log.d("mLog", String.format("Stcoks record: metal - %s, count - %d, update date - %s", metalName, metalCountValue, updateDateValue));
-        }
-
-        usersCursor.close();
-        metalCursor.close();
     }
 }

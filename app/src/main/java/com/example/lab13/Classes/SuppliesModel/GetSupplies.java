@@ -14,6 +14,6 @@ public class GetSupplies {
         Supplies.add(new Supplies(0, 0, 3, 200, LocalDate.now().plus(3, ChronoUnit.DAYS)));
         Supplies.add(new Supplies(0, 1, 4, 200, LocalDate.now().plus(4, ChronoUnit.DAYS)));
 
-        return Supplies;s
+        return Supplies;
     }
 }

@@ -3,6 +3,8 @@ package com.example.lab13.Activities;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -100,5 +102,9 @@ public class MainActivity extends AppCompatActivity {
             cv.put(DBHelper.ORDERS_DATE, order.Date.toString());
             db.insert(DBHelper.TABLE_ORDERS, null, cv);
         }
+    }
+
+    public void toOrdersClick(View view) {
+        Log.d("mlog", "hihihih");
     }
 }

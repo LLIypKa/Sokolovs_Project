@@ -1,4 +1,4 @@
-package com.example.lab13;
+package com.example.lab13.Activities;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,6 +22,8 @@ import com.example.lab13.Classes.SupplierModel.Supplier;
 import com.example.lab13.Classes.UserModels.User;
 import com.example.lab13.Classes.WarehouseModel.GetWarehouseList;
 import com.example.lab13.Classes.WarehouseModel.Warehouse;
+import com.example.lab13.DBHelper;
+import com.example.lab13.R;
 
 import java.util.List;
 

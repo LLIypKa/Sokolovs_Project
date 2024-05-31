@@ -10,6 +10,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.lab13.Classes.OrdersModel.GetOrders;
+import com.example.lab13.Classes.OrdersModel.Order;
 import com.example.lab13.Classes.SuppliesModel.GetSupplies;
 import com.example.lab13.Classes.SuppliesModel.Supplies;
 import com.example.lab13.Classes.UserModels.GetClientsList;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private static List<Warehouse> WarehouseStocks = GetWarehouseList.GetWarehouseStocks();
     private static List<Supplier> Suppliers = GetSupplier.GetSuppliers();
     private static List<Supplies> Supplies = GetSupplies.GetSupplies();
+    private static List<Order> Orders = GetOrders.GetOrders();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +87,16 @@ public class MainActivity extends AppCompatActivity {
             cv.put(DBHelper.SUPPLIES_METAL_ID, sup.MetalID);
             cv.put(DBHelper.SUPPLIES_METAL_COUNT, sup.MetalCount);
             cv.put(DBHelper.SUPPLIES_DATE, sup.Date.toString());
-            db.insert(DBHelper.TABLE_SUPPLIERS, null, cv);
+            db.insert(DBHelper.TABLE_SUPPLIES, null, cv);
+        }
+
+        for(Order order : Orders) {
+            cv.put(DBHelper.ORDERS_ID, order.ID);
+            cv.put(DBHelper.ORDERS_CLIENT_ID, order.ClientID);
+            cv.put(DBHelper.ORDERS_METAL_ID, order.MetalID);
+            cv.put(DBHelper.ORDERS_METAL_COUNT, order.MetalCount);
+            cv.put(DBHelper.ORDERS_DATE, order.Date.toString());
+            db.insert(DBHelper.TABLE_ORDERS, null, cv);
         }
     }
 }

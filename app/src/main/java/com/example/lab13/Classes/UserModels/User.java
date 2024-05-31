@@ -1,4 +1,4 @@
-package com.example.lab13.Classes;
+package com.example.lab13.Classes.UserModels;
 
 public class User {
     public int ClientId;

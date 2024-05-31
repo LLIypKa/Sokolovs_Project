@@ -1,33 +1,25 @@
 package com.example.lab13;
 
 import android.content.ContentValues;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.lab13.Classes.GetClientsList;
+import com.example.lab13.Classes.UserModels.GetClientsList;
 import com.example.lab13.Classes.MetalModels.GetMetalStructures;
 import com.example.lab13.Classes.MetalModels.Metal;
 import com.example.lab13.Classes.SupplierModel.GetSupplier;
 import com.example.lab13.Classes.SupplierModel.Supplier;
-import com.example.lab13.Classes.User;
+import com.example.lab13.Classes.UserModels.User;
 import com.example.lab13.Classes.WarehouseModel.GetWarehouseList;
 import com.example.lab13.Classes.WarehouseModel.Warehouse;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class MainActivity extends AppCompatActivity {
     DBHelper helper;

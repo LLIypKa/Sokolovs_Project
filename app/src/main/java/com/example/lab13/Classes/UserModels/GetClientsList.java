@@ -1,6 +1,5 @@
-package com.example.lab13.Classes;
+package com.example.lab13.Classes.UserModels;
 
-import java.nio.file.attribute.UserPrincipal;
 import java.util.ArrayList;
 import java.util.List;
 

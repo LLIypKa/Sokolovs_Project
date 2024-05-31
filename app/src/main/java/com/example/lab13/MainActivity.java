@@ -10,6 +10,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.lab13.Classes.SuppliesModel.GetSupplies;
+import com.example.lab13.Classes.SuppliesModel.Supplies;
 import com.example.lab13.Classes.UserModels.GetClientsList;
 import com.example.lab13.Classes.MetalModels.GetMetalStructures;
 import com.example.lab13.Classes.MetalModels.Metal;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private static List<Metal> MetalStructures = GetMetalStructures.GetStuctures();
     private static List<Warehouse> WarehouseStocks = GetWarehouseList.GetWarehouseStocks();
     private static List<Supplier> Suppliers = GetSupplier.GetSuppliers();
+    private static List<Supplies> Supplies = GetSupplies.GetSupplies();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +75,15 @@ public class MainActivity extends AppCompatActivity {
         for(Supplier sup : Suppliers) {
             cv.put(DBHelper.SUPPLIERS_ID, sup.SupplierId);
             cv.put(DBHelper.SUPPLIERS_NAME, sup.SupplierName);
+            db.insert(DBHelper.TABLE_SUPPLIERS, null, cv);
+        }
+
+        for(Supplies sup : Supplies) {
+            cv.put(DBHelper.SUPPLIES_ID, sup.ID);
+            cv.put(DBHelper.SUPPLIES_SUPPLIER_ID, sup.SupplierID);
+            cv.put(DBHelper.SUPPLIES_METAL_ID, sup.MetalID);
+            cv.put(DBHelper.SUPPLIES_METAL_COUNT, sup.MetalCount);
+            cv.put(DBHelper.SUPPLIES_DATE, sup.Date.toString());
             db.insert(DBHelper.TABLE_SUPPLIERS, null, cv);
         }
     }

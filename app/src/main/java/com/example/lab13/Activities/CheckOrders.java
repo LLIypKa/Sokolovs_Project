@@ -1,6 +1,9 @@
 package com.example.lab13.Activities;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,9 +11,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.lab13.Classes.OrdersModel.GetOrders;
+import com.example.lab13.Classes.OrdersModel.Order;
+import com.example.lab13.Classes.OrdersModel.OrdersAdapter;
+import com.example.lab13.DBHelper;
 import com.example.lab13.R;
 
+import java.util.List;
+
 public class CheckOrders extends AppCompatActivity {
+    DBHelper helper;
+    SQLiteDatabase db;
+    List<Order> orders = GetOrders.GetOrders();
+    ListView ordersListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,5 +35,11 @@ public class CheckOrders extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        helper = new DBHelper(this);
+        db = helper.getWritableDatabase();
+        ordersListView = findViewById(R.id.ordersList);
+        OrdersAdapter ordersAdapter = new OrdersAdapter(this, orders);
+        ordersListView.setAdapter(ordersAdapter);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.lab13.Activities;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -106,5 +107,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void toOrdersClick(View view) {
         Log.d("mlog", "hihihih");
+        startActivity(new Intent(MainActivity.this, CheckOrders.class));
     }
 }

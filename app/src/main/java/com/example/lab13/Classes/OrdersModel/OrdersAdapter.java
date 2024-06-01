@@ -1,12 +1,15 @@
 package com.example.lab13.Classes.OrdersModel;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.lab13.DBHelper;
 import com.example.lab13.R;
 
 import java.util.List;
@@ -14,11 +17,15 @@ import java.util.List;
 public class OrdersAdapter extends ArrayAdapter<Order> {
     private Context context;
     private List<Order> orders;
+    private DBHelper helper;
+    private SQLiteDatabase db;
 
-    public OrdersAdapter(Context context, List<Order> orders) {
+    public OrdersAdapter(Context context, List<Order> orders, DBHelper helper) {
         super(context, 0, orders);
         this.context = context;
         this.orders = orders;
+        this.helper = helper;
+        db = helper.getWritableDatabase();
     }
 
     @Override
@@ -29,6 +36,10 @@ public class OrdersAdapter extends ArrayAdapter<Order> {
             convertView = LayoutInflater.from(context).inflate(R.layout.list_item_order, parent, false);
         }
 
+        Cursor clientsCursor = db.query(DBHelper.TABLE_CLIENTS, null, null, null, null, null, null);
+        int clientNameColumnIndex = clientsCursor.getColumnIndex(DBHelper.CLIENTS_NAME);
+        clientsCursor.move(order.ClientID + 1);
+
         TextView textViewOrderID = convertView.findViewById(R.id.textViewOrderID);
         TextView textViewClientID = convertView.findViewById(R.id.textViewClientID);
         TextView textViewMetalID = convertView.findViewById(R.id.textViewMetalID);
@@ -36,7 +47,7 @@ public class OrdersAdapter extends ArrayAdapter<Order> {
         TextView textViewDate = convertView.findViewById(R.id.textViewDate);
 
         textViewOrderID.setText("Order ID: " + order.ID);
-        textViewClientID.setText("Client ID: " + order.ClientID);
+        textViewClientID.setText("Client: " + clientsCursor.getString(clientNameColumnIndex));
         textViewMetalID.setText("Metal ID: " + order.MetalID);
         textViewMetalCount.setText("Metal Count: " + order.MetalCount);
         textViewDate.setText("Date: " + order.Date.toString());

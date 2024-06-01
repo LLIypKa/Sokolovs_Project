@@ -39,7 +39,7 @@ public class CheckOrders extends AppCompatActivity {
         helper = new DBHelper(this);
         db = helper.getWritableDatabase();
         ordersListView = findViewById(R.id.ordersList);
-        OrdersAdapter ordersAdapter = new OrdersAdapter(this, orders);
+        OrdersAdapter ordersAdapter = new OrdersAdapter(this, orders, helper);
         ordersListView.setAdapter(ordersAdapter);
     }
 }

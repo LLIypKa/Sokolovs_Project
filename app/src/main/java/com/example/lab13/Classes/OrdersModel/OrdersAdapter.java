@@ -1,6 +1,7 @@
 package com.example.lab13.Classes.OrdersModel;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.lab13.Activities.OrderDetailActivity;
 import com.example.lab13.DBHelper;
 import com.example.lab13.R;
 
@@ -55,6 +57,15 @@ public class OrdersAdapter extends ArrayAdapter<Order> {
         textViewMetalID.setText("Metal: " + metalCursor.getString(metalColumnIndex));
         textViewMetalCount.setText("Metal Count: " + order.MetalCount);
         textViewDate.setText("Date: " + order.Date.toString());
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, OrderDetailActivity.class);
+                intent.putExtra("order", order);
+                context.startActivity(intent);
+            }
+        });
 
         return convertView;
     }

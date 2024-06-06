@@ -1,8 +1,9 @@
 package com.example.lab13.Classes.OrdersModel;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Order {
+public class Order implements Serializable {
     public Integer ID;
     public Integer ClientID;
     public Integer MetalID;

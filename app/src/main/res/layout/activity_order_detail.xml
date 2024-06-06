@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="25dp">
+
+    <TextView
+        android:id="@+id/textViewOrderIDDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order ID" />
+
+    <TextView
+        android:id="@+id/textViewClientIDDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Client ID" />
+
+    <TextView
+        android:id="@+id/textViewMetalIDDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Metal ID" />
+
+    <TextView
+        android:id="@+id/textViewMetalCountDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Metal Count" />
+
+    <TextView
+        android:id="@+id/textViewDateDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date" />
+
+    <Button
+        android:id="@+id/buttonCompleteOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Complete Order" />
+
+</LinearLayout>

@@ -42,7 +42,7 @@ public class OrdersAdapter extends ArrayAdapter<Order> {
 
         Cursor metalCursor = db.query(DBHelper.TABLE_METAL_STRUCTURES, null, null, null, null, null, null);
         int metalColumnIndex = metalCursor.getColumnIndex(DBHelper.METAL_STRUCTURES_NAME);
-        metalCursor.move(order.MetalID + 1);
+        metalCursor.move(order.MetalID);
 
         TextView textViewOrderID = convertView.findViewById(R.id.textViewOrderID);
         TextView textViewClientID = convertView.findViewById(R.id.textViewClientID);

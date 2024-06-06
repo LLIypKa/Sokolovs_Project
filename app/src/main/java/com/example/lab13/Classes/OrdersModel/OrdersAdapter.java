@@ -40,6 +40,10 @@ public class OrdersAdapter extends ArrayAdapter<Order> {
         int clientNameColumnIndex = clientsCursor.getColumnIndex(DBHelper.CLIENTS_NAME);
         clientsCursor.move(order.ClientID + 1);
 
+        Cursor metalCursor = db.query(DBHelper.TABLE_METAL_STRUCTURES, null, null, null, null, null, null);
+        int metalColumnIndex = metalCursor.getColumnIndex(DBHelper.METAL_STRUCTURES_NAME);
+        metalCursor.move(order.MetalID + 1);
+
         TextView textViewOrderID = convertView.findViewById(R.id.textViewOrderID);
         TextView textViewClientID = convertView.findViewById(R.id.textViewClientID);
         TextView textViewMetalID = convertView.findViewById(R.id.textViewMetalID);
@@ -48,7 +52,7 @@ public class OrdersAdapter extends ArrayAdapter<Order> {
 
         textViewOrderID.setText("Order ID: " + order.ID);
         textViewClientID.setText("Client: " + clientsCursor.getString(clientNameColumnIndex));
-        textViewMetalID.setText("Metal ID: " + order.MetalID);
+        textViewMetalID.setText("Metal: " + metalCursor.getString(metalColumnIndex));
         textViewMetalCount.setText("Metal Count: " + order.MetalCount);
         textViewDate.setText("Date: " + order.Date.toString());
 

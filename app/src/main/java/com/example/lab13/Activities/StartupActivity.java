@@ -20,7 +20,7 @@ import com.example.lab13.Classes.SupplierModel.GetSupplier;
 import com.example.lab13.Classes.SupplierModel.Supplier;
 import com.example.lab13.Classes.SuppliesModel.PutSuppliesToDB;
 import com.example.lab13.Classes.SuppliesModel.Supplies;
-import com.example.lab13.Classes.UserModels.GetClientsList;
+import com.example.lab13.Classes.UserModels.PutClientsToDB;
 import com.example.lab13.Classes.UserModels.User;
 import com.example.lab13.Classes.WarehouseModel.PutWarehouseStocksToDB;
 import com.example.lab13.Classes.WarehouseModel.Warehouse;
@@ -31,7 +31,7 @@ import java.util.List;
 
 public class StartupActivity extends AppCompatActivity {
     DBHelper helper;
-    private static List<User> Users = GetClientsList.GetUsers();
+    private static List<User> Users = PutClientsToDB.GetUsers();
     private static List<Metal> MetalStructures = PutMetalStructuresToDB.GetStructures();
     private static List<Warehouse> WarehouseStocks = PutWarehouseStocksToDB.GetWarehouseStocks();
     private static List<Supplier> Suppliers = GetSupplier.GetSuppliers();

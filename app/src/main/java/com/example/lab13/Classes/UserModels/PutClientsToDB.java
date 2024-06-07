@@ -3,7 +3,7 @@ package com.example.lab13.Classes.UserModels;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetClientsList {
+public class PutClientsToDB {
     private static List<User> Users = new ArrayList<>();
 
     public static List<User> GetUsers() {

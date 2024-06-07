@@ -1,6 +1,8 @@
 package com.example.lab13.Activities;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +16,7 @@ import com.example.lab13.Classes.OrdersModel.Order;
 import com.example.lab13.DBHelper;
 import com.example.lab13.R;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class OrderDetailActivity extends AppCompatActivity {
@@ -54,8 +57,43 @@ public class OrderDetailActivity extends AppCompatActivity {
 
     private void completeOrder() {
         SQLiteDatabase db = helper.getWritableDatabase();
-        db.delete(DBHelper.TABLE_ORDERS, String.format("%s = %s", DBHelper.ORDERS_ID, order.ID.toString()), null);
-        finish();
-        startActivity(new Intent(OrderDetailActivity.this, CheckOrders.class));
+        Cursor warehouseCursor = db.query(
+                DBHelper.TABLE_WAREHOUSES_STOCKS,
+                null,
+                DBHelper.WAREHOUSES_STOCKS_METAL_ID + " = ?",
+                new String[]{order.MetalID.toString()},
+                null,
+                null,
+                null
+        );
+
+        // Проверка наличия достаточного количества металла на складе
+        if (warehouseCursor.moveToFirst()) {
+            int index = warehouseCursor.getColumnIndex(DBHelper.WAREHOUSES_STOCKS_METAL_COUNT);
+            int currentStock = warehouseCursor.getInt(index);
+            if (currentStock >= order.MetalCount) {
+                // Уменьшение количества металла на складе
+                int updatedStock = currentStock - order.MetalCount;
+                ContentValues values = new ContentValues();
+                values.put(DBHelper.WAREHOUSES_STOCKS_METAL_COUNT, updatedStock);
+                db.update(
+                        DBHelper.TABLE_WAREHOUSES_STOCKS,
+                        values,
+                        DBHelper.WAREHOUSES_STOCKS_METAL_ID + " = ?",
+                        new String[]{order.MetalID.toString()}
+                );
+
+                db.delete(
+                        DBHelper.TABLE_ORDERS,
+                        DBHelper.ORDERS_ID + " = ?",
+                        new String[]{order.ID.toString()}
+                );
+                startActivity(new Intent(OrderDetailActivity.this, CheckOrders.class));
+                finish();
+            } else {
+                Toast.makeText(this, "Недостаточно металла на складе", Toast.LENGTH_SHORT).show();
+            }
+        }
+        warehouseCursor.close();
     }
 }

@@ -39,7 +39,6 @@ public class WarehouseAdapter extends ArrayAdapter<Warehouse> {
         TextView textViewWarehouseID = convertView.findViewById(R.id.textViewWarehouseID);
         TextView textViewMetalName = convertView.findViewById(R.id.textViewMetalName);
         TextView textViewMetalCount = convertView.findViewById(R.id.textViewMetalCount);
-        TextView textViewUpdateDate = convertView.findViewById(R.id.textViewUpdateDate);
 
         // Получение имени металла по его ID
         String metalName = getMetalNameById(warehouse.MetalStructureId);
@@ -47,7 +46,6 @@ public class WarehouseAdapter extends ArrayAdapter<Warehouse> {
         textViewWarehouseID.setText("Warehouse ID: " + warehouse.RecordId);
         textViewMetalName.setText("Metal Name: " + metalName);
         textViewMetalCount.setText("Metal Count: " + warehouse.MetalStructureCount);
-        textViewUpdateDate.setText("Last Update: " + warehouse.UpdateDate);
 
         return convertView;
     }

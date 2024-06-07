@@ -54,16 +54,8 @@ public class OrderDetailActivity extends AppCompatActivity {
 
     private void completeOrder() {
         SQLiteDatabase db = helper.getWritableDatabase();
-
-        try {
-            db.delete(DBHelper.TABLE_ORDERS, String.format("%s = %s", DBHelper.ORDERS_ID, order.ID.toString()), null);
-        }
-        catch (Exception e){
-            Toast.makeText(this, "Запись уже удалена", Toast.LENGTH_SHORT).show();
-        }
-
+        db.delete(DBHelper.TABLE_ORDERS, String.format("%s = %s", DBHelper.ORDERS_ID, order.ID.toString()), null);
         finish();
-
         startActivity(new Intent(OrderDetailActivity.this, CheckOrders.class));
     }
 }

@@ -1,9 +1,11 @@
 package com.example.lab13.Activities;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
@@ -44,10 +46,26 @@ public class CheckOrders extends AppCompatActivity {
         db = helper.getWritableDatabase();
         ordersListView = findViewById(R.id.ordersList);
         Cursor ordersCursor = db.query(DBHelper.TABLE_ORDERS, null,null,null, null, null, null);
+        Cursor stocksCursor = db.query(DBHelper.TABLE_WAREHOUSES_STOCKS, null,null,null, null, null, null);
+        int metalindex = stocksCursor.getColumnIndex(DBHelper.WAREHOUSES_STOCKS_METAL_ID);
+        int metalcount = stocksCursor.getColumnIndex(DBHelper.WAREHOUSES_STOCKS_METAL_COUNT);
         while(ordersCursor.move(1)) {
             Log.d("check order", "order");
         }
+        while(stocksCursor.moveToNext()){
+            int metal = stocksCursor.getInt(metalindex);
+            int count = stocksCursor.getInt(metalcount);
+
+            Log.d("stocks", String.valueOf(metal) + " " + String.valueOf(count));
+        }
         OrdersAdapter ordersAdapter = new OrdersAdapter(this, orders, helper);
         ordersListView.setAdapter(ordersAdapter);
+    }
+
+    public void onReturnClick(View v) {
+        // Переход на главную страницу
+        Intent intent = new Intent(CheckOrders.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

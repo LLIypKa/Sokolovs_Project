@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".Activities.OrderDetailActivity"
             android:exported="false"/>
+        <activity android:name=".Activities.MetalListActivity"
+            android:exported="false"/>
         <activity android:name=".Activities.StartupActivity"
             android:exported="true">
             <intent-filter>

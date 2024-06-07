@@ -24,12 +24,15 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-
     }
 
     public void toOrdersClick(View view) {
         Log.d("mlog", "hihihih");
         startActivity(new Intent(MainActivity.this, CheckOrders.class));
+    }
+
+    public void toMetalsClick(View view) {
+        Log.d("mlog", "hihihih");
+        startActivity(new Intent(MainActivity.this, MetalListActivity.class));
     }
 }

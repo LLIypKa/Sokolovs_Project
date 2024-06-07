@@ -3,10 +3,10 @@ package com.example.lab13.Classes.MetalModels;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetMetalStructures {
+public class PutMetalStructuresToDB {
     private static List<Metal> MetalStructures = new ArrayList<>();
 
-    public static List<Metal> GetStuctures() {
+    public static List<Metal> GetStructures() {
         if(MetalStructures.isEmpty()) {
             MetalStructures.add(new Metal(0, "Алюминиевый уголок", "Серый металический"));
             MetalStructures.add(new Metal(1, "Лист железа (б)", "Белый"));

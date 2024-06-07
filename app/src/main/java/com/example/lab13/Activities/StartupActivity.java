@@ -12,7 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.lab13.Classes.MetalModels.GetMetalStructures;
+import com.example.lab13.Classes.MetalModels.PutMetalStructuresToDB;
 import com.example.lab13.Classes.MetalModels.Metal;
 import com.example.lab13.Classes.OrdersModel.PutOrdersToDB;
 import com.example.lab13.Classes.OrdersModel.Order;
@@ -32,7 +32,7 @@ import java.util.List;
 public class StartupActivity extends AppCompatActivity {
     DBHelper helper;
     private static List<User> Users = GetClientsList.GetUsers();
-    private static List<Metal> MetalStructures = GetMetalStructures.GetStuctures();
+    private static List<Metal> MetalStructures = PutMetalStructuresToDB.GetStructures();
     private static List<Warehouse> WarehouseStocks = GetWarehouseList.GetWarehouseStocks();
     private static List<Supplier> Suppliers = GetSupplier.GetSuppliers();
     private static List<com.example.lab13.Classes.SuppliesModel.Supplies> Supplies = GetSupplies.GetSupplies();

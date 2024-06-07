@@ -40,4 +40,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d("mlog", "hihihih");
         startActivity(new Intent(MainActivity.this, WarehouseListActivity.class));
     }
+
+    public void toSuppliesClick(View view) {
+        Log.d("mlog", "hihihih");
+        startActivity(new Intent(MainActivity.this, SupplyListActivity.class));
+    }
 }

@@ -1,11 +1,10 @@
 package com.example.lab13.Classes.SuppliesModel;
 
-import androidx.lifecycle.CompositeGeneratedAdaptersObserver;
-
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Supplies {
+public class Supplies implements Serializable {
     public Integer ID;
     public Integer SupplierID;
     public Integer MetalID;

@@ -67,12 +67,10 @@ public class OrderDetailActivity extends AppCompatActivity {
                 null
         );
 
-        // Проверка наличия достаточного количества металла на складе
         if (warehouseCursor.moveToFirst()) {
             int index = warehouseCursor.getColumnIndex(DBHelper.WAREHOUSES_STOCKS_METAL_COUNT);
             int currentStock = warehouseCursor.getInt(index);
             if (currentStock >= order.MetalCount) {
-                // Уменьшение количества металла на складе
                 int updatedStock = currentStock - order.MetalCount;
                 ContentValues values = new ContentValues();
                 values.put(DBHelper.WAREHOUSES_STOCKS_METAL_COUNT, updatedStock);

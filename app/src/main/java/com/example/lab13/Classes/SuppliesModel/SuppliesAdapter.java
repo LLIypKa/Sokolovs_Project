@@ -90,7 +90,6 @@ public class SuppliesAdapter extends ArrayAdapter<Supplies> {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         db.beginTransaction();
         try {
-            // Update the warehouse stocks
             Cursor cursor = db.query(DBHelper.TABLE_WAREHOUSES_STOCKS,
                     new String[]{DBHelper.WAREHOUSES_STOCKS_METAL_COUNT},
                     DBHelper.WAREHOUSES_STOCKS_METAL_ID + "=?",
@@ -106,7 +105,6 @@ public class SuppliesAdapter extends ArrayAdapter<Supplies> {
                         new String[]{String.valueOf(supply.MetalID)});
                 cursor.close();
             } else {
-                // If there is no existing entry for the metal, create a new one
                 ContentValues values = new ContentValues();
                 values.put(DBHelper.WAREHOUSES_STOCKS_METAL_ID, supply.MetalID);
                 values.put(DBHelper.WAREHOUSES_STOCKS_METAL_COUNT, supply.MetalCount);

@@ -1,5 +1,6 @@
 package com.example.lab13.Activities;
 
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +40,10 @@ public class CheckOrders extends AppCompatActivity {
         helper = new DBHelper(this);
         db = helper.getWritableDatabase();
         ordersListView = findViewById(R.id.ordersList);
+        Cursor ordersCursor = db.query(DBHelper.TABLE_ORDERS, null,null,null, null, null, null);
+        while(ordersCursor.move(1)) {
+            Log.d("check order", "order");
+        }
         OrdersAdapter ordersAdapter = new OrdersAdapter(this, orders, helper);
         ordersListView.setAdapter(ordersAdapter);
     }

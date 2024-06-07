@@ -1,19 +1,24 @@
 package com.example.lab13.Activities;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.lab13.Classes.OrdersModel.Order;
+import com.example.lab13.DBHelper;
 import com.example.lab13.R;
 
 import java.time.format.DateTimeFormatter;
 
 public class OrderDetailActivity extends AppCompatActivity {
     private Order order;
+    private DBHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,8 @@ public class OrderDetailActivity extends AppCompatActivity {
         textViewMetalCountDetail.setText("Metal Count: " + order.MetalCount);
         textViewDateDetail.setText("Date: " + order.Date.toString());
 
+        helper = new DBHelper(this);
+
         Button buttonCompleteOrder = findViewById(R.id.buttonCompleteOrder);
         buttonCompleteOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,10 +53,17 @@ public class OrderDetailActivity extends AppCompatActivity {
     }
 
     private void completeOrder() {
-        // Логика уменьшения количества металла на складе и удаления записи из базы данных
-        // ...
+        SQLiteDatabase db = helper.getWritableDatabase();
 
-        // Возвращение к предыдущей активности
+        try {
+            db.delete(DBHelper.TABLE_ORDERS, String.format("%s = %s", DBHelper.ORDERS_ID, order.ID.toString()), null);
+        }
+        catch (Exception e){
+            Toast.makeText(this, "Запись уже удалена", Toast.LENGTH_SHORT).show();
+        }
+
         finish();
+
+        startActivity(new Intent(OrderDetailActivity.this, CheckOrders.class));
     }
 }

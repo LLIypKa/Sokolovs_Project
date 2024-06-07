@@ -5,7 +5,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetSupplies {
+public class PutSuppliesToDB {
     private static List<Supplies> Supplies = new ArrayList<>();
 
     public static List<Supplies> GetSupplies() {

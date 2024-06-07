@@ -12,18 +12,20 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.lab13.Classes.OrdersModel.GetOrders;
+import com.example.lab13.Classes.OrdersModel.GetOrdersFromDBClass;
+import com.example.lab13.Classes.OrdersModel.PutOrdersToDB;
 import com.example.lab13.Classes.OrdersModel.Order;
 import com.example.lab13.Classes.OrdersModel.OrdersAdapter;
 import com.example.lab13.DBHelper;
 import com.example.lab13.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CheckOrders extends AppCompatActivity {
     DBHelper helper;
     SQLiteDatabase db;
-    List<Order> orders = GetOrders.GetOrders();
+    List<Order> orders = new ArrayList<>();
     ListView ordersListView;
 
     @Override
@@ -38,6 +40,7 @@ public class CheckOrders extends AppCompatActivity {
         });
 
         helper = new DBHelper(this);
+        orders = new GetOrdersFromDBClass(helper).GetOrdersFromDB();
         db = helper.getWritableDatabase();
         ordersListView = findViewById(R.id.ordersList);
         Cursor ordersCursor = db.query(DBHelper.TABLE_ORDERS, null,null,null, null, null, null);

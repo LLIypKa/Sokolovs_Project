@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.lab13.Classes.MetalModels.GetMetalStructures;
 import com.example.lab13.Classes.MetalModels.Metal;
-import com.example.lab13.Classes.OrdersModel.GetOrders;
+import com.example.lab13.Classes.OrdersModel.PutOrdersToDB;
 import com.example.lab13.Classes.OrdersModel.Order;
 import com.example.lab13.Classes.SupplierModel.GetSupplier;
 import com.example.lab13.Classes.SupplierModel.Supplier;
@@ -36,7 +36,7 @@ public class StartupActivity extends AppCompatActivity {
     private static List<Warehouse> WarehouseStocks = GetWarehouseList.GetWarehouseStocks();
     private static List<Supplier> Suppliers = GetSupplier.GetSuppliers();
     private static List<com.example.lab13.Classes.SuppliesModel.Supplies> Supplies = GetSupplies.GetSupplies();
-    private static List<Order> Orders = GetOrders.GetOrders();
+    private static List<Order> Orders = PutOrdersToDB.GetOrders();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,11 +1,17 @@
 package com.example.lab13.Classes.OrdersModel;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+
+import com.example.lab13.DBHelper;
+
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetOrders {
+public class PutOrdersToDB {
     private static List<Order> Orders = new ArrayList<>();
 
     public static List<Order> GetOrders() {

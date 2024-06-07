@@ -35,4 +35,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d("mlog", "hihihih");
         startActivity(new Intent(MainActivity.this, MetalListActivity.class));
     }
+
+    public void toStocksClick(View view) {
+        Log.d("mlog", "hihihih");
+        startActivity(new Intent(MainActivity.this, WarehouseListActivity.class));
+    }
 }

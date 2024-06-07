@@ -16,7 +16,7 @@ import com.example.lab13.Classes.MetalModels.PutMetalStructuresToDB;
 import com.example.lab13.Classes.MetalModels.Metal;
 import com.example.lab13.Classes.OrdersModel.PutOrdersToDB;
 import com.example.lab13.Classes.OrdersModel.Order;
-import com.example.lab13.Classes.SupplierModel.GetSupplier;
+import com.example.lab13.Classes.SupplierModel.PutSuppliersToDB;
 import com.example.lab13.Classes.SupplierModel.Supplier;
 import com.example.lab13.Classes.SuppliesModel.PutSuppliesToDB;
 import com.example.lab13.Classes.SuppliesModel.Supplies;
@@ -34,7 +34,7 @@ public class StartupActivity extends AppCompatActivity {
     private static List<User> Users = PutClientsToDB.GetUsers();
     private static List<Metal> MetalStructures = PutMetalStructuresToDB.GetStructures();
     private static List<Warehouse> WarehouseStocks = PutWarehouseStocksToDB.GetWarehouseStocks();
-    private static List<Supplier> Suppliers = GetSupplier.GetSuppliers();
+    private static List<Supplier> Suppliers = PutSuppliersToDB.GetSuppliers();
     private static List<com.example.lab13.Classes.SuppliesModel.Supplies> Supplies = PutSuppliesToDB.GetSupplies();
     private static List<Order> Orders = PutOrdersToDB.GetOrders();
 

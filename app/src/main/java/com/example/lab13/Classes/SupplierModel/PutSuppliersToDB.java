@@ -1,15 +1,9 @@
 package com.example.lab13.Classes.SupplierModel;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
-public class GetSupplier {
+public class PutSuppliersToDB {
     private static List<Supplier> SupplierList = new ArrayList<>();
 
     public static List<Supplier> GetSuppliers() {

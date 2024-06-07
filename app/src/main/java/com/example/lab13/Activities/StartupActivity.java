@@ -22,7 +22,7 @@ import com.example.lab13.Classes.SuppliesModel.PutSuppliesToDB;
 import com.example.lab13.Classes.SuppliesModel.Supplies;
 import com.example.lab13.Classes.UserModels.GetClientsList;
 import com.example.lab13.Classes.UserModels.User;
-import com.example.lab13.Classes.WarehouseModel.GetWarehouseList;
+import com.example.lab13.Classes.WarehouseModel.PutWarehouseStocksToDB;
 import com.example.lab13.Classes.WarehouseModel.Warehouse;
 import com.example.lab13.DBHelper;
 import com.example.lab13.R;
@@ -33,7 +33,7 @@ public class StartupActivity extends AppCompatActivity {
     DBHelper helper;
     private static List<User> Users = GetClientsList.GetUsers();
     private static List<Metal> MetalStructures = PutMetalStructuresToDB.GetStructures();
-    private static List<Warehouse> WarehouseStocks = GetWarehouseList.GetWarehouseStocks();
+    private static List<Warehouse> WarehouseStocks = PutWarehouseStocksToDB.GetWarehouseStocks();
     private static List<Supplier> Suppliers = GetSupplier.GetSuppliers();
     private static List<com.example.lab13.Classes.SuppliesModel.Supplies> Supplies = PutSuppliesToDB.GetSupplies();
     private static List<Order> Orders = PutOrdersToDB.GetOrders();

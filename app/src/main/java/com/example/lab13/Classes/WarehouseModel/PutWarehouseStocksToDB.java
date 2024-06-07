@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetWarehouseList {
+public class PutWarehouseStocksToDB {
     private static List<Warehouse> WarehouseStocks = new ArrayList<>();
 
     public static List<Warehouse> GetWarehouseStocks() {
